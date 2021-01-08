@@ -14,7 +14,8 @@ async function getWord() {
   );
 
   const data = await res.json();
-  console.log(data);
+
+  // In order to strictly evaluate in "text" event listener, setting index 0 to data return; otherwise an object will be returned and the strict comparison won't work ("insertedText" is string, "randomWord" is an object)
   return data[0];
 }
 
