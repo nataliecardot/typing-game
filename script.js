@@ -79,5 +79,9 @@ text.addEventListener('input', (e) => {
 
     // Clear input text
     e.target.value = '';
+
+    time += 5;
+
+    updateTime();
   }
 });
