@@ -26,7 +26,7 @@ let randomWord;
 let score = 0;
 
 // Init time
-let time = 10;
+let time = 15;
 
 // Start counting down
 // setInterval: running updateTime function every 1 second
@@ -54,6 +54,17 @@ function updateTime() {
     // End game
     gameOver();
   }
+}
+
+// Game over, show end screen
+function gameOver() {
+  endgameEl.innerHTML = `
+    <h1>Time ran out!</h1>
+    <p>Your final score is: ${score}</p>
+    <button onclick="location.reload()">Play Again</button>
+  `;
+
+  endgameEl.style.display = 'flex';
 }
 
 addWordToDOM();
