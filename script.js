@@ -34,3 +34,15 @@ async function addWordToDOM() {
 }
 
 addWordToDOM();
+
+// Event listeners
+text.addEventListener('input', (e) => {
+  const insertedText = e.target.value.trim();
+
+  if (insertedText === randomWord) {
+    addWordToDOM();
+
+    // Clear input text
+    e.target.value = '';
+  }
+});
