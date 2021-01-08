@@ -85,3 +85,6 @@ text.addEventListener('input', (e) => {
     updateTime();
   }
 });
+
+// Settings button click (adding hide class moves it off screen, setting Y position to -100)
+settingsBtn.addEventListener('click', () => settings.classList.toggle('hide'));

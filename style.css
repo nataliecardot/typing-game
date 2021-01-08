@@ -57,6 +57,7 @@ button:focus {
 }
 
 .settings.hide {
+  /* The X axis increases horizontally to the right; the Y axis increases vertically downwards */
   transform: translateY(-100%);
 }
 
