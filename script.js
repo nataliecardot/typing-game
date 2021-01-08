@@ -16,6 +16,9 @@ async function getWord() {
   const data = await res.json();
 
   // In order to strictly evaluate in "text" event listener, setting index 0 to data return; otherwise an object will be returned and the strict comparison won't work ("insertedText" is string, "randomWord" is an object)
+  // console.log(data);
+  // console.log(typeof data); // object (it's an array, which is a type of object)
+  // console.log(typeof data[0]); // string
   return data[0];
 }
 
@@ -27,6 +30,15 @@ let score = 0;
 
 // Init time
 let time = 15;
+
+// Set difficulty to medium by default, value in session storage if has been set by user
+let difficulty =
+  sessionStorage.getItem('difficulty') !== null
+    ? sessionStorage.getItem('difficulty')
+    : 'medium';
+
+// Set difficulty select value
+difficultySelect.value = difficulty;
 
 // Start counting down
 // setInterval: running updateTime function every 1 second
@@ -80,7 +92,13 @@ text.addEventListener('input', (e) => {
     // Clear input text
     e.target.value = '';
 
-    time += 5;
+    if (difficulty === 'hard') {
+      time += 3;
+    } else if (difficulty === 'medium') {
+      time += 4;
+    } else {
+      time += 5;
+    }
 
     updateTime();
   }
@@ -88,3 +106,9 @@ text.addEventListener('input', (e) => {
 
 // Settings button click (adding hide class moves it off screen, setting Y position to -100)
 settingsBtn.addEventListener('click', () => settings.classList.toggle('hide'));
+
+// Settings select
+settingsForm.addEventListener('change', (e) => {
+  difficulty = e.target.value;
+  sessionStorage.setItem('difficulty', difficulty);
+});
