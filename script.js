@@ -28,6 +28,10 @@ let score = 0;
 // Init time
 let time = 10;
 
+// Start counting down
+// setInterval: running updateTime function every 1 second
+const timeInterval = setInterval(updateTime, 1000);
+
 async function addWordToDOM() {
   randomWord = await getWord();
   word.innerHTML = randomWord;
@@ -37,6 +41,19 @@ async function addWordToDOM() {
 function updateScore() {
   score++;
   scoreEl.innerHTML = score;
+}
+
+// Update time
+function updateTime() {
+  time--;
+  timeEl.innerHTML = time + 's';
+
+  if (time === 0) {
+    // Clear interval set by setInterval
+    clearInterval(timeInterval);
+    // End game
+    gameOver();
+  }
 }
 
 addWordToDOM();
